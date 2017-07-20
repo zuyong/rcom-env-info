@@ -1,0 +1,67 @@
+<!doctype html>
+<html ng-app="ServerlessBlog">
+  <head>
+    <meta charset="utf-8">
+    <title>QA env info</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <base href="/" />
+
+
+    <script   src="//code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+
+  </head>
+  <body>
+    <select class="opts">
+      <option selected value="qa1us">qa1us</option>
+      <option value="qa2us">qa2us</option>
+      <option value="qa3us">qa3us</option>
+    </select>
+    <table id="env_info_tbl" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>instance</th>
+                    <th>container</th>
+                    <th>tag</th>
+                    <th>cache</th>
+                </tr>
+            </thead>
+    </table>
+
+  <script type="text/javascript">
+    function sourcUrl(env) {
+      return "https://lo3eswicu0.execute-api.us-east-1.amazonaws.com/dev/getqainfo/" + env;
+    }
+
+
+    $(document).ready( function(){
+      window.table=$("#env_info_tbl").DataTable({
+        ajax: {
+          // url:'sample.json',
+          url: sourcUrl($(".opts").val()),
+          crossDomain:true,
+          dataSrc: ""
+        },
+        columns: [
+            { data: 'instance' },
+            { data: 'container' },
+            { data: 'tag' },
+            { data: 'cache' }
+        ],
+        "order": [[ 0, "asc" ], [1, "asc"]],
+        paging: false,
+        "dom": '<"top"if>rt<"bottom"><"clear">'
+
+      });
+
+      $(".opts").change(function(){
+        window.table.ajax.url(sourcUrl($(this).val())).load();
+      });
+    });
+  </script>
+
+  </body>
+</html>

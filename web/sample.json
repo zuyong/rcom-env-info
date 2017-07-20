@@ -1,0 +1,15 @@
+[
+
+    {
+        "instance": "admin_01",
+        "container": "cleanlog",
+        "tag": "CKB-12243",
+        "cache": true
+    },
+    {
+        "instance": "admin_01",
+        "container": "cmsdbchange",
+        "tag": "CKB-12345",
+        "cache": true
+    }
+]

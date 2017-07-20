@@ -1,0 +1,14 @@
+{
+  "name": "rcom-env-info",
+  "version": "1.0.0",
+  "description": "Show RCOM environment info",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wilber",
+  "license": "ISC",
+  "dependencies": {
+    "yamljs": "^0.3.0"
+  }
+}
